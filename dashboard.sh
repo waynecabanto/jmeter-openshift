@@ -12,25 +12,25 @@ echo "Creating Influxdb jmeter Database"
 ##Wait until Influxdb Deployment is up and running
 ##influxdb_status=`oc get po -n $tenant | grep influxdb-jmeter | awk '{print $2}' | grep Running
 
-influxdb_pod=`oc get pod | grep influxdb | awk '{print $1}'`
-oc exec -ti $influxdb_pod -- influx -execute 'CREATE DATABASE jmeter'
+influxdb_pod=`oc get pod | grep influxdb | grep Running | awk '{print $1}'`
+oc exec -ti $influxdb_pod -- influx scripts -execute 'CREATE DATABASE jmeter'
 
 ## make sure the db is created
 
 # $ oc rsh $influxdb_pod 
 
-oc exec -ti $influxdb_pod -- influx -execute 'SHOW DATABASES'
+oc exec -ti $influxdb_pod -- influx scripts -execute 'SHOW DATABASES'
 
 ## Create the influxdb datasource in Grafana
 
 echo "Creating the Influxdb data source"
-influxdb_pod=`oc get pod | grep influxdb | awk '{print $1}'`
+influxdb_pod=`oc get pod | grep influxdb | grep Running | awk '{print $1}'`
 
 ## Make load test script in Jmeter master pod executable
 
 #Get Master pod details
 
-master_pod=`oc get pod | grep jmeter-master | awk '{print $1}'`
+master_pod=`oc get pod | grep jmeter-master | grep Running | awk '{print $1}'`
 
 ##oc cp $working_dir/influxdb-jmeter-datasource.json -n $tenant $grafana_pod:/influxdb-jmeter-datasource.json
 

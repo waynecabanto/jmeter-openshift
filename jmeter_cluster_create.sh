@@ -93,6 +93,7 @@ oc create serviceaccount useroot
 oc adm policy add-scc-to-user anyuid -z useroot
 
 oc patch dc/jmeter-master --patch '{"spec":{"template":{"spec":{"serviceAccountName": "useroot"}}}}'
+oc patch dc/influxdb --patch '{"spec":{"template":{"spec":{"serviceAccountName": "useroot"}}}}'
 
 echo "Creating Grafana Deployment"
 
