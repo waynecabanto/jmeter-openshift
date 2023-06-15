@@ -13,13 +13,13 @@ echo "Creating Influxdb jmeter Database"
 ##influxdb_status=`oc get po -n $tenant | grep influxdb-jmeter | awk '{print $2}' | grep Running
 
 influxdb_pod=`oc get pod | grep influxdb | grep Running | awk '{print $1}'`
-oc exec -ti $influxdb_pod -- influx scripts -execute 'CREATE DATABASE jmeter'
+oc exec -ti $influxdb_pod -- influx -execute 'CREATE DATABASE jmeter'
 
 ## make sure the db is created
 
 # $ oc rsh $influxdb_pod 
 
-oc exec -ti $influxdb_pod -- influx scripts -execute 'SHOW DATABASES'
+oc exec -ti $influxdb_pod -- influx -execute 'SHOW DATABASES'
 
 ## Create the influxdb datasource in Grafana
 

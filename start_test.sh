@@ -21,7 +21,7 @@ fi
 
 #master_pod=`kubectl get pod -n loadtesting | grep jmeter-master | awk '{print $1}'`
 
-master_pod=`oc get pod  | grep jmeter-master | awk '{print $1}'`
+master_pod=`oc get pod  | grep jmeter-master | grep Running | awk '{print $1}'`
 
 oc cp load_test $master_pod:/tmp/load_test
 

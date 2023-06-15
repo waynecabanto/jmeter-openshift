@@ -23,7 +23,7 @@ spec:
             value: :8087
           - name: INFLUXDB_UDP_DATABASE
             value: udp
-          image: influxdb
+          image: influxdb:1.3.9 #fixed version because it doesn't work with the latest ones
           imagePullPolicy: Always
           name: influxdb
           ports:
@@ -44,4 +44,3 @@ spec:
           - name: config-volume
             configMap:
             name: influxdb-config
-  

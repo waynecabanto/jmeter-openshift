@@ -25,10 +25,9 @@ spec:
         app: influxdb-jmeter
     spec:
       containers:
-      - image: cloudssky/influxdb:latest
-        name: influxdb
-        imagePullPolicy: Always
+      - image: cloudssky/influxdb:1.3.9
         name: influxdb-jmeter
+        imagePullPolicy: Always
         volumeMounts:
           - name: config-volume
             mountPath: /etc/influxdb
