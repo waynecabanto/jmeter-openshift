@@ -7,6 +7,7 @@ Forked from https://github.com/kubernauts/jmeter-kubernetes, made changes to mak
 * Running OpenShift cluster (tested on v4.5)
 * a jmx file to load into the Jmeter cluster
 * make sure you're logged in to your OpenShift cluster on your terminal before proceeding
+* when running grafana, make sure to change the time range on the left of the UI or change it directly from the template
 ## To Run
 ```
 ./jmeter_cluster_create.sh
