@@ -14,6 +14,10 @@ Forked from https://github.com/kubernauts/jmeter-kubernetes, made changes to mak
 ## To Run
 ```
 ./jmeter_cluster_create.sh
+```
+```
 ./dashboard.sh
+```
+```
 ./start_test.sh
 ```
