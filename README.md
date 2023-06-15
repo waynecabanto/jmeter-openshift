@@ -6,7 +6,7 @@ Forked from https://github.com/kubernauts/jmeter-kubernetes, made changes to mak
 ## Prerequisites
 * Running OpenShift cluster (tested on v4.5)
 * a jmx file to load into the Jmeter cluster
-
+* make sure you're loggin in to your OpenShift cluster on your terminal before proceeding
 ## To Run
 ```
 ./jmeter_cluster_create.sh
