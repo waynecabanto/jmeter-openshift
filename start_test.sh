@@ -17,6 +17,15 @@ then
     exit
 fi
 
+#dynamic users
+read -p 'Enter path to the users file ' csv
+if [ ! -f "$csv" ];
+then
+    echo "Test script file was not found in PATH"
+    echo "Kindly check and input the correct file path"
+    exit
+fi
+
 #Get Master pod details
 
 #master_pod=`kubectl get pod -n loadtesting | grep jmeter-master | awk '{print $1}'`
@@ -31,6 +40,14 @@ oc cp $jmx $master_pod:/tmp/pepper_box.jmx
 
 oc exec -ti $master_pod -- chmod +x /tmp/pepper_box.jmx
 
+oc cp $csv $master_pod:/tmp/users.csv
+
+oc exec -ti $master_pod -- chmod +x /tmp/users.csv
+
+#create csv for results
+oc exec -ti $master_pod -- touch /tmp/test.csv
+oc exec -ti $master_pod -- chmod +x /tmp/test.csv
+
 ## Echo Starting Jmeter load test
 
-oc exec -ti $master_pod -- /bin/bash /tmp/load_test /tmp/pepper_box.jmx
+oc exec -ti $master_pod -- /bin/bash /tmp/load_test /tmp/pepper_box.jmx /tmp/users.csv
